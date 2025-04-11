@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Debt Manager Chat</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f0f2f5;
+        }
+
+        .chat-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-height: 400px;
+        }
+
+        .bot-msg {
+            background: #f1f0fe;
+            padding: 15px;
+            border-radius: 20px 20px 20px 5px;
+            margin: 10px 0;
+            max-width: 85%;
+            animation: fadeIn 0.3s ease-in;
+            position: relative;
+        }
+
+        .user-msg {
+            background: #dcf8c6;
+            padding: 15px;
+            border-radius: 20px 20px 5px 20px;
+            margin: 10px 0 10px auto;
+            max-width: 85%;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .typing-indicator {
+            display: flex;
+            padding: 10px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .typing-dot {
+            height: 8px;
+            width: 8px;
+            margin: 0 3px;
+            background: #ddd;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #0084ff;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 132, 255, 0.3);
+        }
+
+        button {
+            padding: 12px 25px;
+            background: #0084ff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #0073e6;
+            transform: translateY(-1px);
+        }
+
+        .choice-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .choice-btn {
+            background: #e5efff;
+            color: #0084ff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .choice-btn:hover {
+            background: #0084ff;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="chat-container" id="chatContainer">
+        <h1
+            style="font-family: Arial, sans-serif; color: #3875b1; text-align: center; margin-top: 30px; font-size: 36px;">
+            Debt Manager Bot 💬
+        </h1>
+    </div>
+    <div class="input-container">
+        <input type="text" id="userInput" placeholder="Type your response...">
+        <button onclick="processAnswer()">Send</button>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        let currentDebt = {};
+        let debts = [];
+        const extraPayment = 100; // Example extra payment amount
+
+        const questions = [
+            {
+                text: ["Let's get started! What should we call this debt?", "First, how would you name this obligation?"],
+                field: 'name'
+            },
+            {
+                text: ["What's the current amount owed?", "Could you share the remaining balance for this debt?"],
+                field: 'balance'
+            },
+            {
+                text: ["What annual interest rate is applied?", "What percentage interest are you being charged yearly?"],
+                field: 'interestRate'
+            },
+            {
+                text: ["What's the required minimum payment?", "How much must you pay each month at minimum?"],
+                field: 'minPayment'
+            },
+            {
+                text: ["Would you like to add another debt?", "Should we include another financial obligation?"],
+                field: 'moreDebts'
+            }
+        ];
+
+        function showTypingIndicator() {
+            const typing = document.createElement('div');
+            typing.className = 'typing-indicator';
+            typing.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            chatContainer.appendChild(typing);
+            return typing;
+        }
+
+        function addMessage(msg, isUser = false) {
+            const div = document.createElement('div');
+            div.className = isUser ? 'user-msg' : 'bot-msg';
+            div.innerHTML = msg;
+            chatContainer.appendChild(div);
+            div.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function askQuestion() {
+            const question = questions[currentStep];
+            const typing = showTypingIndicator();
+
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            typing.remove();
+
+            const randomQuestion = question.text[Math.floor(Math.random() * question.text.length)];
+            addMessage(randomQuestion);
+
+            if (question.field === 'moreDebts') {
+                showChoiceButtons();
+            }
+        }
+
+        function showChoiceButtons() {
+            const buttons = document.createElement('div');
+            buttons.className = 'choice-buttons';
+            buttons.innerHTML = `
+                <div class="choice-btn" onclick="handleChoice(true)">Yes</div>
+                <div class="choice-btn" onclick="handleChoice(false)">No</div>
+            `;
+            chatContainer.appendChild(buttons);
+            buttons.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleChoice(choice) {
+            document.querySelector('.choice-buttons').remove();
+            processAnswer(choice ? 'yes' : 'no');
+        }
+
+        function processAnswer(answer = null) {
+            const userInput = document.getElementById('userInput');
+            answer = answer || userInput.value.trim();
+
+            if (!answer && currentStep !== 4) return;
+
+            addMessage(answer, true);
+            userInput.value = '';
+
+            if (currentStep < 4) {
+                currentDebt[questions[currentStep].field] = answer;
+                currentStep++;
+                askQuestion();
+            } else if (currentStep === 4) {
+                currentDebt[questions[currentStep].field] = answer;
+                debts.push(currentDebt);
+                currentDebt = {};
+
+                if (answer.toLowerCase() === 'yes') {
+                    currentStep = 0; // Restart the debt entry process
+                    askQuestion();
+                } else {
+                    calculatePayoffPlan();
+                }
+            }
+        }
+
+        function calculatePayoffPlan() {
+            addMessage("🧮 Crunching numbers... This might take a moment");
+
+            // Process debts with validation
+            let processedDebts = debts.map(debt => ({
+                name: debt.name,
+                balance: parseFloat(debt.balance),
+                rate: parseFloat(debt.interestRate) / 100 / 12, // Monthly rate
+                minPayment: parseFloat(debt.minPayment),
+                paid: 0,
+                interestPaid: 0
+            }));
+
+            // Sort debts by balance (Snowball method)
+            processedDebts = processedDebts.sort((a, b) => a.balance - b.balance);
+
+            let months = 0;
+            let totalInterest = 0;
+            const payoffPlan = [];
+            const monthlyPayment = extraPayment;
+
+            while (processedDebts.length > 0 && months < 360) { // 30-year timeout
+                months++;
+                let monthlyReport = {
+                    month: months,
+                    focusDebt: processedDebts[0].name,
+                    payments: [],
+                    remaining: 0
+                };
+
+                // Track available extra payment
+                let extra = monthlyPayment;
+
+                // Process each debt
+                for (const debt of processedDebts) {
+                    // Calculate interest
+                    const interest = debt.balance * debt.rate;
+                    totalInterest += interest;
+                    debt.interestPaid += interest;
+                    debt.balance += interest;
+
+                    // Make minimum payment
+                    const minPayment = Math.min(debt.balance, debt.minPayment);
+                    debt.balance -= minPayment;
+                    debt.paid += minPayment;
+
+                    // Store payment info
+                    monthlyReport.payments.push({
+                        name: debt.name,
+                        paid: minPayment,
+                        interest: interest
+                    });
+                }
+
+                // Apply extra payments to first debt
+                if (processedDebts.length > 0 && extra > 0) {
+                    const focusDebt = processedDebts[0];
+                    const payment = Math.min(focusDebt.balance, extra);
+                    focusDebt.balance -= payment;
+                    focusDebt.paid += payment;
+                    extra -= payment;
+
+                    monthlyReport.payments[0].paid += payment;
+                }
+
+                // Update remaining balances and filter paid debts
+                processedDebts = processedDebts.filter(d => d.balance > 0.01);
+                monthlyReport.remaining = processedDebts.reduce((sum, d) => sum + d.balance, 0);
+
+                payoffPlan.push(monthlyReport);
+            }
+
+            showPayoffDetails(payoffPlan, totalInterest);
+        }
+
+        function showPayoffDetails(plan, totalInterest) {
+            let message = `<strong>Recommended Payoff Plan (Snowball method):</strong>`;
+
+            // Show all months in detail
+            plan.forEach(month => {
+                const focusDebt = month.payments.find(p => p.name === month.focusDebt);
+                message += `
+            <div style="margin-top:15px; background:#f8f9fa; padding:10px; border-radius:8px;">
+                🗓️ <strong>Month ${month.month}</strong>: Focus on ${month.focusDebt}<br>
+                💰 Principal Paid: $${focusDebt.paid.toFixed(2)}<br>
+                📈 Interest Accrued: $${focusDebt.interest.toFixed(2)}<br>
+                ✅ Remaining Balance: $${month.remaining.toFixed(2)}
+            </div>
+        `;
+            });
+
+            // Show summary
+            message += `
+        <div style="margin-top:20px; background:#e3f2fd; padding:15px; border-radius:8px;">
+            ⏱️ Total Months: ${plan.length}<br>
+            💸 Total Interest Paid: $${totalInterest.toFixed(2)}<br>
+            🎯 Final Payment Date: Month ${plan.length}
+        </div>
+    `;
+
+            addMessage(message);
+        }
+
+        // Initialize conversation
+        askQuestion();
+    </script>
+</body>
+
+</html>
