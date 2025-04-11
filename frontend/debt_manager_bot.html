@@ -9,59 +9,65 @@
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            background: #f0f2f5;
+            background: #121212;
+            color: #e0e0e0;
         }
 
         .chat-container {
-            background: white;
+            background: #1e1e1e;
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             min-height: 400px;
+            border: 1px solid #333;
         }
 
         .bot-msg {
-            background: #f1f0fe;
+            background: #2d2d3a;
             padding: 15px;
             border-radius: 20px 20px 20px 5px;
             margin: 10px 0;
             max-width: 85%;
             animation: fadeIn 0.3s ease-in;
             position: relative;
+            color: #e0e0e0;
+            border: 1px solid #3a3a4a;
         }
 
         .user-msg {
-            background: #dcf8c6;
+            background: #1a3a1a;
             padding: 15px;
             border-radius: 20px 20px 5px 20px;
             margin: 10px 0 10px auto;
             max-width: 85%;
             animation: fadeIn 0.3s ease-in;
+            color: #e0e0e0;
+            border: 1px solid #2a4a2a;
         }
 
         .typing-indicator {
             display: flex;
             padding: 10px;
             animation: fadeIn 0.3s ease-in;
+            background: #2d2d3a;
+            border-radius: 20px 20px 20px 5px;
+            max-width: 85%;
+            border: 1px solid #3a3a4a;
         }
 
         .typing-dot {
             height: 8px;
             width: 8px;
             margin: 0 3px;
-            background: #ddd;
+            background: #666;
             border-radius: 50%;
             animation: bounce 1.4s infinite ease-in-out;
         }
 
         @keyframes bounce {
-
-            0%,
-            80%,
-            100% {
+            0%, 80%, 100% {
                 transform: translateY(0);
             }
-
             40% {
                 transform: translateY(-10px);
             }
@@ -72,7 +78,6 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -88,20 +93,26 @@
         input {
             flex: 1;
             padding: 12px;
-            border: 2px solid #0084ff;
+            border: 2px solid #007acc;
             border-radius: 25px;
             font-size: 16px;
             transition: all 0.3s ease;
+            background: #2d2d2d;
+            color: #e0e0e0;
         }
 
         input:focus {
             outline: none;
-            box-shadow: 0 0 8px rgba(0, 132, 255, 0.3);
+            box-shadow: 0 0 8px rgba(0, 122, 204, 0.3);
+        }
+
+        input::placeholder {
+            color: #888;
         }
 
         button {
             padding: 12px 25px;
-            background: #0084ff;
+            background: #007acc;
             color: white;
             border: none;
             border-radius: 25px;
@@ -110,7 +121,7 @@
         }
 
         button:hover {
-            background: #0073e6;
+            background: #006bb3;
             transform: translateY(-1px);
         }
 
@@ -121,29 +132,45 @@
         }
 
         .choice-btn {
-            background: #e5efff;
-            color: #0084ff;
+            background: #1a2a3a;
+            color: #4d9eff;
             padding: 10px 20px;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.2s ease;
+            border: 1px solid #2a3a4a;
         }
 
         .choice-btn:hover {
-            background: #0084ff;
+            background: #007acc;
             color: white;
+        }
+
+        h1 {
+            font-family: Arial, sans-serif;
+            color: #4d9eff;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 36px;
+        }
+
+        /* Dark theme scrollbar */
+        .chat-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .chat-container::-webkit-scrollbar-track {
+            background: #2d2d2d;
+        }
+        .chat-container::-webkit-scrollbar-thumb {
+            background: #007acc;
+            border-radius: 4px;
         }
     </style>
 </head>
 
 <body>
-
-
     <div class="chat-container" id="chatContainer">
-        <h1
-            style="font-family: Arial, sans-serif; color: #3875b1; text-align: center; margin-top: 30px; font-size: 36px;">
-            Debt Manager Bot 💬
-        </h1>
+        <h1>Debt Manager Bot 💬</h1>
     </div>
     <div class="input-container">
         <input type="text" id="userInput" placeholder="Type your response...">
@@ -339,7 +366,7 @@
             plan.forEach(month => {
                 const focusDebt = month.payments.find(p => p.name === month.focusDebt);
                 message += `
-            <div style="margin-top:15px; background:#f8f9fa; padding:10px; border-radius:8px;">
+            <div style="margin-top:15px; background:#2d2d2d; padding:10px; border-radius:8px; border:1px solid #3a3a3a;">
                 🗓️ <strong>Month ${month.month}</strong>: Focus on ${month.focusDebt}<br>
                 💰 Principal Paid: $${focusDebt.paid.toFixed(2)}<br>
                 📈 Interest Accrued: $${focusDebt.interest.toFixed(2)}<br>
@@ -350,7 +377,7 @@
 
             // Show summary
             message += `
-        <div style="margin-top:20px; background:#e3f2fd; padding:15px; border-radius:8px;">
+        <div style="margin-top:20px; background:#1a2a3a; padding:15px; border-radius:8px; border:1px solid #2a3a4a;">
             ⏱️ Total Months: ${plan.length}<br>
             💸 Total Interest Paid: $${totalInterest.toFixed(2)}<br>
             🎯 Final Payment Date: Month ${plan.length}

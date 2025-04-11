@@ -6,27 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Purchase Advisor</title>
     <style>
+        :root {
+            --primary: #00c896;
+            --primary-dark: #009672;
+            --bg: #121a1f;
+            --card-bg: #1e2a32;
+            --text: #e0e7ec;
+            --text-secondary: #a3b8c2;
+            --border: #2a3a44;
+            --success: #00c896;
+            --warning: #ff9f43;
+            --error: #ff6b6b;
+        }
+
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             margin: 0;
             padding: 0;
-            background: #f0f4f8;
-            color: #2d3436;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            line-height: 1.6;
         }
 
         .container {
             width: 100%;
             max-width: 600px;
             margin: 20px;
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             transition: transform 0.3s ease;
+            border: 1px solid var(--border);
         }
 
         .container:hover {
@@ -36,77 +51,87 @@
         h1 {
             text-align: center;
             color: #ffffff;
-            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #00a8cc 100%);
             margin: 0;
-            padding: 25px 20px;
-            font-size: 1.8rem;
+            padding: 22px 20px;
+            font-size: 1.5rem;
             font-weight: 600;
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .chat-box {
             height: 400px;
             padding: 20px;
             overflow-y: auto;
-            background: #f8f9fa;
+            background: var(--bg);
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
         .bot-msg {
-            background: #ffffff;
-            padding: 15px 20px;
+            background: var(--card-bg);
+            padding: 14px 18px;
             border-radius: 18px 18px 18px 4px;
             max-width: 80%;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             animation: slideIn 0.3s ease-out;
             align-self: flex-start;
-            border: 1px solid #e9ecef;
+            border: 1px solid var(--border);
+            color: var(--text);
         }
 
         .user-msg {
-            background: #00b894;
-            color: white;
-            padding: 15px 20px;
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 18px;
             border-radius: 18px 18px 4px 18px;
             max-width: 80%;
             animation: slideIn 0.3s ease-out;
             align-self: flex-end;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
         }
 
         .input-container {
             display: flex;
-            padding: 20px;
-            background: #ffffff;
-            border-top: 1px solid #e9ecef;
-            gap: 10px;
+            padding: 18px;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border);
+            gap: 12px;
         }
 
         input {
             flex: 1;
-            padding: 14px 20px;
-            border: 2px solid #e9ecef;
+            padding: 14px 18px;
+            border: 1px solid var(--border);
             border-radius: 30px;
             font-size: 1rem;
             transition: all 0.3s ease;
+            background: var(--bg);
+            color: var(--text);
         }
 
         input:focus {
             outline: none;
-            border-color: #00b894;
-            box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 200, 150, 0.2);
+        }
+
+        input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
         }
 
         button {
-            padding: 14px 25px;
-            background: #00b894;
-            color: white;
+            padding: 14px 24px;
+            background: var(--primary);
+            color: #fff;
             border: none;
             border-radius: 30px;
             cursor: pointer;
@@ -115,10 +140,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         button:hover {
-            background: #00997b;
+            background: var(--primary-dark);
             transform: translateY(-1px);
         }
 
@@ -127,22 +153,25 @@
         }
 
         .analysis-message {
-            background: #ffffff;
-            border-radius: 15px;
-            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 18px;
             margin: 15px 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border);
             animation: scaleUp 0.3s ease;
         }
 
         .analysis-header {
             font-size: 1.1em;
             font-weight: 600;
-            color: #2d3436;
+            color: var(--primary);
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .analysis-line {
@@ -151,26 +180,38 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #555;
+            color: var(--text-secondary);
+        }
+
+        .analysis-line.positive {
+            color: var(--success);
+        }
+
+        .analysis-line.caution {
+            color: var(--warning);
+        }
+
+        .analysis-line.negative {
+            color: var(--error);
         }
 
         .typing-indicator {
-            background: #ffffff;
-            padding: 15px 20px;
+            background: var(--card-bg);
+            padding: 14px 18px;
             border-radius: 18px 18px 18px 4px;
             max-width: 80%;
             align-self: flex-start;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
         }
 
         .typing-dot {
             height: 8px;
             width: 8px;
-            background: #00b894;
+            background: var(--primary);
             border-radius: 50%;
             animation: bounce 1.4s infinite ease-in-out;
         }
@@ -224,21 +265,39 @@
             position: absolute;
             right: -8px;
             bottom: -8px;
-            background: #00b894;
+            background: var(--primary);
             color: white;
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 12px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .emoji {
             font-size: 1.2em;
             margin-right: 8px;
+        }
+
+        /* Scrollbar styling */
+        .chat-box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-box::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
         }
     </style>
 </head>
@@ -246,7 +305,7 @@
 <body>
     <div class="container">
         <h1>
-            <span class="emoji">🤖</span>
+            <span class="emoji">💼</span>
             Financial Purchase Advisor
         </h1>
         <div id="chatBox" class="chat-box">
@@ -256,7 +315,7 @@
             </div>
         </div>
         <div class="input-container">
-            <input type="text" id="userInput" placeholder="Type your message..." autocomplete="off">
+            <input type="text" id="userInput" placeholder="Type your response..." autocomplete="off">
             <button onclick="processInput()">
                 Send
             </button>
@@ -317,10 +376,7 @@
                     typing.remove();
                     const div = document.createElement('div');
                     div.className = 'bot-msg';
-                    div.innerHTML = `
-      
-                        ${msg}
-                    `;
+                    div.innerHTML = msg;
                     chatBox.appendChild(div);
                     scrollToBottom();
                 }, 1500);
@@ -338,18 +394,33 @@
             setTimeout(() => {
                 if (currentStep === 0) {
                     const income = parseFloat(input);
-                    if (isNaN(income) || income <= 0) {
-                        addMessage("❌ Please enter a valid annual income");
+                    if (isNaN(income)) {
+                        addMessage("⚠️ Please enter a valid number for your annual income");
+                        userInput.disabled = false;
+                        return;
+                    }
+                    if (income <= 0) {
+                        addMessage("⚠️ Income must be greater than zero");
                         userInput.disabled = false;
                         return;
                     }
                     userData.income = income;
                 } else if (currentStep === 1) {
+                    if (input.length < 2) {
+                        addMessage("⚠️ Please enter a valid item name");
+                        userInput.disabled = false;
+                        return;
+                    }
                     userData.item = input;
                 } else if (currentStep === 2) {
                     const cost = parseFloat(input);
-                    if (isNaN(cost) || cost <= 0) {
-                        addMessage("❌ Please enter a valid cost");
+                    if (isNaN(cost)) {
+                        addMessage("⚠️ Please enter a valid number for the cost");
+                        userInput.disabled = false;
+                        return;
+                    }
+                    if (cost <= 0) {
+                        addMessage("⚠️ Cost must be greater than zero");
                         userInput.disabled = false;
                         return;
                     }
@@ -374,29 +445,38 @@
             setTimeout(() => {
                 typing.remove();
                 const { income, item, cost } = userData;
+                const percentage = (cost / income) * 100;
+                const monthlyPayment = (cost * 1.07) / 12;
                 const isSensible = cost <= (0.3 * income);
+                const isExtreme = cost > (0.5 * income);
 
                 const analysisHTML = `
                     <div class="analysis-message">
                         <div class="analysis-header">
-                            <span class="emoji">📊</span> Analysis for ${item}
+                            <span class="emoji">📊</span> Financial Analysis: ${item}
                         </div>
                         <div class="analysis-line">
-                            <span class="emoji">🧮</span> Cost: $${cost.toFixed(2)}
-                        </div>
-                        <div class="analysis-line ${isSensible ? 'text-green' : 'text-red'}">
-                            <span class="emoji">${isSensible ? '✅' : '⚠️'}</span>
-                            ${isSensible ? 'Sensible Purchase' : 'Reconsider Purchase'}
+                            <span class="emoji">💵</span> Item Cost: $${cost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
                         </div>
                         <div class="analysis-line">
-                            <span class="emoji">💡</span>
-                            ${isSensible ?
-                        'Fits well within your budget' :
-                        'Consider saving up or cheaper alternatives'}
+                            <span class="emoji">💰</span> Your Annual Income: $${income.toLocaleString('en-US')}
                         </div>
                         <div class="analysis-line">
-                            <span class="emoji">📅</span>
-                            Monthly Payment (12month @7%): $${((cost * 1.07) / 12).toFixed(2)}
+                            <span class="emoji">📈</span> Cost represents ${percentage.toFixed(1)}% of your annual income
+                        </div>
+                        <div class="analysis-line ${isSensible ? 'positive' : isExtreme ? 'negative' : 'caution'}">
+                            <span class="emoji">${isSensible ? '✅' : isExtreme ? '❌' : '⚠️'}</span>
+                            <strong>${isSensible ? 'Recommended Purchase' : isExtreme ? 'Not Recommended' : 'Caution Advised'}</strong>
+                        </div>
+                        <div class="analysis-line ${isSensible ? 'positive' : isExtreme ? 'negative' : 'caution'}">
+                            ${isSensible ? 
+                              'This purchase fits comfortably within your budget' : 
+                              isExtreme ? 
+                              'This purchase exceeds 50% of your annual income - strongly reconsider' : 
+                              'This purchase represents a significant portion of your income - consider saving first'}
+                        </div>
+                        <div class="analysis-line">
+                            <span class="emoji">📅</span> Estimated Monthly Payment (12mo @7%): $${monthlyPayment.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
                         </div>
                     </div>
                 `;
@@ -405,8 +485,22 @@
                 div.innerHTML = analysisHTML;
                 chatBox.appendChild(div);
                 scrollToBottom();
+                
+                // Reset for new analysis
+                setTimeout(() => {
+                    currentStep = 0;
+                    userData = { income: null, item: null, cost: null };
+                    addMessage("Would you like to analyze another purchase?");
+                }, 3000);
             }, 2000);
         }
+
+        // Handle Enter key
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                processInput();
+            }
+        });
     </script>
 </body>
 

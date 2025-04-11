@@ -1,26 +1,42 @@
-# Crypto Chatbot 🤖
+### 🤖 Conversational Financial Advisor
 
-A simple and user-friendly cryptocurrency chatbot designed to provide real-time cryptocurrency price information and trading advice. This project is tailored for users with limited financial literacy, offering conversational responses and educational insights.
+# Developed an AI assistant that provides personalized financial guidance and education for users with limited financial literacy, helping them make better decisions about saving, investing, and debt management. 
+
+### 🔧 Libraries
+
+- *HTML5*  
+  Used for structuring the chatbot interface and layout.
+
+- *CSS3*  
+  Used for styling the chatbot, including animations, themes, and responsive design.
+
+- *JavaScript (Vanilla)*  
+  Used for handling user interactions, managing conversation flow, and dynamically updating the UI.
+
+- *Fetch API*  
+  Used for making HTTP requests to fetch cryptocurrency data from the backend or external APIs.
+
+- *Node.js* 
+  Used to create the backend server
+
+- *Express.js*
+  Used to define routes and managing http request 
 
 ---
 
-## Features
-- **Real-Time Cryptocurrency Data**: Fetches live data from the Gemini API.
-- **Conversational Interface**: Provides responses in plain, easy-to-understand language.
-- **Educational Insights**: Explains financial terms like "Bid," "Ask," and "Volume."
-- **Advice for Buying and Selling**: Offers basic guidance based on market data.
+### 🔌 APIs
 
----
-
-## Technologies Used
-- **Backend**: Node.js, Express.js, Axios
-- **Frontend**: HTML, CSS, JavaScript
-- **API**: Gemini API for cryptocurrency data
+- *Gemini API*  
+  - *Endpoint*: http://localhost:3000/api/ask  
+  - *Purpose*: Fetches cryptocurrency market data such as bid price, ask price, last trade price, and 24-hour volume.
 
 ---
 
 ## Screenshots
 
-![alt text](image-1.png)
+
+![alt text](image.png)
 
 ![alt text](image-2.png)
+
+![alt text](image-1.png)
