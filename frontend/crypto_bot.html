@@ -4,155 +4,756 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Bot</title>
+    <title>Crypto Conversation Bot</title>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5649c0;
+            --secondary: #00cec9;
+            --dark: #12181b;
+            --darker: #0b0e11;
+            --light: #f1f2f6;
+            --gray: #57606f;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+            --info: #0984e3;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-container {
+            display: flex;
+            width: 95%;
+            max-width: 1400px;
+            height: 90vh;
+            gap: 20px;
+        }
+
+        .chat-section {
+            flex: 7;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-section {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
         }
 
         .container {
-            max-width: 600px;
-            margin: 50px auto;
+            background: var(--dark);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .chat-header {
             padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         h1 {
-            text-align: center;
-            color: #4CAF50;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding-left: 10px;
         }
 
-        form {
+        .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-weight: 300;
+            padding-left: 10px;
+        }
+
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: var(--darker);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--dark);
+        }
+
+        .chat-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-container::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        .chat-container::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 6px;
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            line-height: 1.5;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background: rgba(45, 52, 54, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border-radius: 18px 18px 18px 4px;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 18px 18px 4px 18px;
+            box-shadow: 0 2px 12px rgba(108, 92, 231, 0.3);
+        }
+
+        .input-area {
+            display: flex;
+            gap: 12px;
+            padding: 15px 20px;
+            background: var(--dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         input {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            flex: 1;
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            background: rgba(30, 39, 46, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            color: var(--light);
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.3);
+        }
+
+        input::placeholder {
+            color: var(--gray);
+            opacity: 0.7;
         }
 
         button {
-            padding: 10px;
+            padding: 0 24px;
             font-size: 16px;
-            background-color: #4CAF50;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 24px;
             cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         button:hover {
-            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.4);
         }
 
-        .response-box {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f1f1f1;
-            border-radius: 4px;
-            font-size: 16px;
+        button:active {
+            transform: translateY(0);
+        }
+
+        .typing-indicator {
+            display: inline-block;
+            padding-left: 5px;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            margin-right: 3px;
+            animation: typing 1s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: translateY(-4px);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+        }
+
+        .info-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--secondary), #00a8a8);
+            color: var(--darker);
+            text-align: center;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .info-box {
-            margin-top: 30px;
-            padding: 15px;
-            background: #e7f5ff;
-            border-radius: 4px;
-            font-size: 14px;
-            color: #0056b3;
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--secondary) var(--dark);
+            background: var(--dark);
+        }
+
+        .info-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .info-box::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        .info-box::-webkit-scrollbar-thumb {
+            background-color: var(--secondary);
+            border-radius: 6px;
         }
 
         .info-box h3 {
-            margin-top: 0;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(0, 206, 201, 0.3);
+            padding-bottom: 8px;
         }
 
         .info-box ul {
             padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-box li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .timestamp {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .suggestion-chip {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            background: rgba(108, 92, 231, 0.15);
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            color: var(--light);
+        }
+
+        .suggestion-chip:hover {
+            background: rgba(108, 92, 231, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .suggestions-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            padding: 0 20px 15px;
+            background: var(--dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .loading {
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .crypto-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: rgba(0, 206, 201, 0.2);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-right: 6px;
+            color: var(--secondary);
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+                height: auto;
+                max-height: none;
+            }
+
+            .chat-section,
+            .info-section {
+                flex: none;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .container {
+                height: 500px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Crypto Chatbot 🤖</h1>
-        <p>Welcome! Enter a cryptocurrency symbol (e.g., BTCUSD) to learn about its current price and trading details.
-        </p>
-        <form id="promptForm">
-            <label for="promptInput">Cryptocurrency Symbol:</label>
-            <input type="text" id="promptInput" placeholder="e.g., BTCUSD, ETHUSD">
-            <button type="submit">Ask</button>
-        </form>
-        <div id="response" class="response-box">
-            <p>Enter a symbol to get started!</p>
+    <div class="main-container">
+        <div class="chat-section">
+            <div class="container">
+                <h1>Crypto Chat Companion 💬</h1>
+                <p class="subtitle">Your friendly guide to cryptocurrency markets</p>
+
+                <div class="chat-container" id="chatContainer">
+                    <div class="message bot-message">
+                        <span id="initialMessage">Hello there! 👋 I'm your crypto assistant. How are you today?</span>
+                        <div class="timestamp" id="initialTimestamp"></div>
+                    </div>
+                </div>
+
+                <div class="input-area">
+                    <input type="text" id="promptInput" placeholder="Type your message here..." autocomplete="off">
+                    <button type="button" id="sendButton">Send</button>
+                </div>
+
+                <div class="suggestions-container" id="suggestions">
+                    <div class="suggestion-chip" data-message="I'm good, thanks!">I'm good, thanks!</div>
+                    <div class="suggestion-chip" data-message="Can you help me with crypto?">Help with crypto</div>
+                    <div class="suggestion-chip" data-message="What can you do?">What can you do?</div>
+                </div>
+            </div>
         </div>
-        <div class="info-box">
-            <h3>What do these terms mean?</h3>
-            <ul>
-                <li><strong>Bid:</strong> The highest price someone is willing to pay for the cryptocurrency.</li>
-                <li><strong>Ask:</strong> The lowest price someone is willing to sell the cryptocurrency for.</li>
-                <li><strong>Last Price:</strong> The most recent transaction price.</li>
-                <li><strong>Volume:</strong> The total amount of cryptocurrency traded in the last 24 hours.</li>
-            </ul>
+
+        <div class="info-section">
+            <div class="container">
+                <div class="info-toggle" id="infoToggle">ℹ️ Crypto Trading Terms</div>
+                <div class="info-box" id="infoBox">
+                    <h3>Understanding Crypto Terms</h3>
+                    <ul>
+                        <li><strong>Bid:</strong> The highest price buyers are offering right now.</li>
+                        <li><strong>Ask:</strong> The lowest price sellers are asking for right now.</li>
+                        <li><strong>Last Price:</strong> The price at which the most recent trade happened.</li>
+                        <li><strong>Volume:</strong> How much trading activity there's been recently.</li>
+                        <li><strong>Spread:</strong> The difference between the bid and ask prices.</li>
+                        <li><strong>Liquidity:</strong> How easily an asset can be bought or sold.</li>
+                        <li><strong>Market Order:</strong> Buy/sell immediately at current market price.</li>
+                        <li><strong>Limit Order:</strong> Buy/sell only at a specified price or better.</li>
+                    </ul>
+                    <br>
+                    <h3>Popular Cryptos : </h3>
+                    <ul>
+                        <li>
+                            <strong>BTCUSD – Bitcoin to US Dollar</strong>
+                            <br>
+                            The first and most valuable cryptocurrency.
+                        </li>
+                        <li>
+                            <strong>ETHUSD – Ethereum to US Dollar</strong>
+                            <br>
+                            A smart contract and DApp platform.
+                        </li>
+                        <li>
+                            <strong>XRPUSD – Ripple (XRP) to US Dollar</strong>
+                            <br>
+                            Used for fast international money transfers.
+                        </li>
+                        <li>
+                            <strong>SOLUSD – Solana to US Dollar</strong>
+                            <br>
+                            A high-speed, low-fee blockchain.
+                        </li>
+                        <li>
+                            <strong>DOGEUSD – Dogecoin to US Dollar</strong>
+                            <br>
+                            A meme coin popular for tipping and fun.
+                        </li>
+                        <li>
+                            <strong>AVAXUSD – Avalanche to US Dollar</strong>
+                            <br>
+                            A scalable blockchain for custom apps.
+                        </li>
+                        <li>
+                            <strong>MATICUSD – Polygon (MATIC) to US Dollar</strong>
+                            <br>
+                            An Ethereum scaling solution.
+                        </li>
+                        <li>
+                            <strong>PEPEUSD – Pepe Coin to US Dollar</strong>
+                            <br>
+                            A meme token inspired by the Pepe frog.
+                        </li>
+                        <li>
+                            <strong>SHIBUSD – Shiba Inu to US Dollar</strong>
+                            <br>
+                            A Dogecoin-inspired meme cryptocurrency.
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
+
+
     <script>
-        document.getElementById('promptForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-
+        document.addEventListener('DOMContentLoaded', function () {
+            const chatContainer = document.getElementById('chatContainer');
             const promptInput = document.getElementById('promptInput');
-            const responseDiv = document.getElementById('response');
+            const sendButton = document.getElementById('sendButton');
+            const infoToggle = document.getElementById('infoToggle');
+            const infoBox = document.getElementById('infoBox');
+            const suggestions = document.getElementById('suggestions');
+            const suggestionChips = document.querySelectorAll('.suggestion-chip');
 
-            const prompt = promptInput.value.trim();
-            if (!prompt) {
-                responseDiv.innerHTML = "<p>Please enter a valid cryptocurrency symbol (e.g., BTCUSD).</p>";
-                return;
-            }
+            // Conversation state
+            let conversationState = 'greeting';
+            let userName = '';
+            let userInterest = '';
 
-            try {
-                const response = await fetch('http://localhost:3000/api/ask', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt }),
+            // Set initial timestamp
+            document.getElementById('initialTimestamp').textContent = getCurrentTime();
+
+            // Toggle info box
+            infoToggle.addEventListener('click', function () {
+                infoBox.style.display = infoBox.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Handle suggestion chips
+            suggestionChips.forEach(chip => {
+                chip.addEventListener('click', function () {
+                    promptInput.value = this.getAttribute('data-message');
+                    sendMessage();
                 });
+            });
 
-                const data = await response.json();
-                if (response.ok) {
-                    const bidText = `The highest price someone is willing to pay for ${prompt.toUpperCase()} is $${data.bid}.`;
-                    const askText = `The lowest price someone is willing to sell ${prompt.toUpperCase()} for is $${data.ask}.`;
-                    const lastPriceText = `The most recent transaction price for ${prompt.toUpperCase()} is $${data.last}.`;
-                    const volumeText = `In the last 24 hours, a total of ${data.volume.BTC} ${prompt.toUpperCase()} has been traded, worth $${data.volume.USD}.`;
+            // Handle sending messages
+            function sendMessage() {
+                const userMessage = promptInput.value.trim();
+                if (!userMessage) return;
 
-                    const adviceText = `
-                        If you're looking to buy, consider the ask price of $${data.ask}, but make sure to research market trends.
-                        If you're looking to sell, the bid price of $${data.bid} might be a good starting point.
-                    `;
+                // Add user message to chat
+                addMessage(userMessage, 'user');
+                promptInput.value = '';
 
-                    responseDiv.innerHTML = `
-                        <h3>Here's what I found for ${prompt.toUpperCase()}:</h3>
-                        <p>${bidText}</p>
-                        <p>${askText}</p>
-                        <p>${lastPriceText}</p>
-                        <p>${volumeText}</p>
-                        <h4>Advice:</h4>
-                        <p>${adviceText}</p>
-                    `;
-                } else {
-                    responseDiv.innerHTML = `<p>${data.error || "An error occurred."}</p>`;
-                }
-            } catch (error) {
-                console.error(error);
-                responseDiv.innerHTML = "<p>Failed to connect to the server. Please try again later.</p>";
+                // Show typing indicator
+                const typingId = showTypingIndicator();
+
+                // Process the message
+                setTimeout(() => {
+                    removeTypingIndicator(typingId);
+                    processUserMessage(userMessage);
+                }, 1000);
             }
+
+            // Send message on button click or Enter key
+            sendButton.addEventListener('click', sendMessage);
+            promptInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // Add a message to the chat
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}-message`;
+                messageDiv.innerHTML = text + `<div class="timestamp">${getCurrentTime()}</div>`;
+                chatContainer.appendChild(messageDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            // Show typing indicator
+            function showTypingIndicator() {
+                const typingId = 'typing-' + Date.now();
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'message bot-message';
+                typingDiv.id = typingId;
+                typingDiv.innerHTML = '<span class="typing-indicator"><span></span><span></span><span></span></span>' +
+                    `<div class="timestamp">${getCurrentTime()}</div>`;
+                chatContainer.appendChild(typingDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                return typingId;
+            }
+
+            // Remove typing indicator
+            function removeTypingIndicator(id) {
+                const typingElement = document.getElementById(id);
+                if (typingElement) {
+                    typingElement.remove();
+                }
+            }
+
+            // Process user message and generate bot response
+            async function processUserMessage(message) {
+                message = message.toLowerCase();
+
+                // Conversation flow based on current state
+                switch (conversationState) {
+                    case 'greeting':
+                        if (message.match(/good|great|fine|ok|okay|well|thanks|thank you/i)) {
+                            addMessage("That's great to hear! 😊 My name is CryptoBot. What should I call you?", 'bot');
+                            conversationState = 'get_name';
+                        } else if (message.match(/bad|not good|tired|sad|upset/i)) {
+                            addMessage("I'm sorry to hear that. 😔 Maybe we can brighten your day with some interesting crypto trends? What's your name?", 'bot');
+                            conversationState = 'get_name';
+                        } else if (message.match(/help|crypto|price|bitcoin|btc|eth|ether|what can you/i)) {
+                            addMessage("I'd be happy to help with crypto! But first, what's your name?", 'bot');
+                            conversationState = 'get_name';
+                        } else {
+                            addMessage("Nice to meet you! I'm CryptoBot. What's your name?", 'bot');
+                            conversationState = 'get_name';
+                        }
+                        updateSuggestions(["My name is...", "Just call me User", "I'd rather not say"]);
+                        break;
+
+                    case 'get_name':
+                        if (message.match(/name is|call me|i'm|i am/i)) {
+                            userName = message.replace(/(name is|call me|i'm|i am)/i, '').trim();
+                            if (userName.length > 20) userName = userName.substring(0, 20) + '...';
+                        } else if (message.match(/rather not|don't want|no name/i)) {
+                            userName = "friend";
+                        } else {
+                            userName = message || "friend";
+                        }
+
+                        addMessage(`Nice to meet you, ${userName}! 👋 Are you interested in cryptocurrency trading, investing, or just learning?`, 'bot');
+                        conversationState = 'get_interest';
+                        updateSuggestions(["Trading", "Investing", "Just learning", "Curious about prices"]);
+                        break;
+
+                    case 'get_interest':
+                        if (message.match(/trade|trading/i)) {
+                            userInterest = 'trading';
+                            addMessage(`Great choice, ${userName}! Trading can be exciting. Are you looking for specific crypto prices or market analysis?`, 'bot');
+                        } else if (message.match(/invest|investing|long term/i)) {
+                            userInterest = 'investing';
+                            addMessage(`Smart thinking, ${userName}! Investing is about patience. Would you like to check prices or learn about market trends?`, 'bot');
+                        } else {
+                            userInterest = 'learning';
+                            addMessage(`Learning is the best way to start, ${userName}! Would you like me to explain some crypto concepts or check current prices?`, 'bot');
+                        }
+                        conversationState = 'ready_for_query';
+                        updateSuggestions(["Check BTC price", "Explain crypto terms", "What's trending?"]);
+                        break;
+
+                    case 'ready_for_query':
+                        // Check if it's a simple greeting
+                        if (message.match(/^(hi|hello|hey|greetings)/)) {
+                            addMessage(`Hello again, ${userName}! What crypto information would you like today?`, 'bot');
+                            return;
+                        }
+
+                        // Check if it's a thank you
+                        if (message.match(/^(thanks|thank you|appreciate it)/)) {
+                            addMessage(`You're very welcome, ${userName}! 😊 Is there anything else you'd like to know about cryptocurrencies?`, 'bot');
+                            return;
+                        }
+
+                        // Check if asking about capabilities
+                        if (message.match(/what can you|help|support|features/i)) {
+                            addMessage(`I can help you with: 
+                            <br>🔍 Checking current crypto prices (like BTC or ETH)
+                            <br>📈 Explaining market trends
+                            <br>📚 Teaching crypto concepts
+                            <br>💡 Giving basic trading insights
+                            <br><br>What would you like to try first, ${userName}?`, 'bot');
+                            return;
+                        }
+
+                        // Extract cryptocurrency symbol (simple pattern match)
+                        const symbolMatch = message.match(/\b([A-Z]{3,6}\/?[A-Z]{3,6})\b/i) ||
+                            message.match(/(bitcoin|btc|ether|eth|ripple|xrp|cardano|ada|solana|sol)/i);
+                        let symbol = symbolMatch ?
+                            symbolMatch[1] ? symbolMatch[1].toUpperCase().replace('/', '') :
+                                convertCryptoNameToSymbol(symbolMatch[0]) : null;
+
+                        if (!symbol) {
+                            addMessage(`I'm not sure I understand, ${userName}. Could you specify which cryptocurrency you're interested in? For example: 
+                            <br><br>"What's the price of Bitcoin?"
+                            <br>"Tell me about ETH"
+                            <br>"How is SOL doing today?"`, 'bot');
+                            updateSuggestions(["BTC price", "ETH info", "SOL status", "Trending cryptos"]);
+                            return;
+                        }
+
+                        try {
+                            // Simulate API call (replace with your actual API call)
+                            const response = await fetch('http://localhost:3000/api/ask', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ prompt: symbol }),
+                            });
+
+                            if (!response.ok) {
+                                // Handle non-2xx status codes
+                                addMessage(`Hmm, I couldn't find data for ${symbol}, ${userName}. Could that be a different symbol? Some common ones are BTCUSD, ETHUSD, XRPUSD, DOGEUSD, AVAXUSD, MATICUSD, PEPEUSD, SHIBUSD or SOLUSD.`, 'bot');
+                                updateSuggestions(["Try BTCUSD", "Try ETHUSD", "Try SOLUSD", "Help"]);
+                                return;
+                            }
+
+                            const data = await response.json();
+
+                            // Construct conversational response
+                            let botResponse = `Here's what I found for ${symbol}, ${userName}:<br><br>`;
+                            botResponse += `📊 Current market: Buyers offering <strong>$${data.bid}</strong> (bid) `;
+                            botResponse += `and sellers asking <strong>$${data.ask}</strong> (ask).<br><br>`;
+                            botResponse += `💰 Last trade price: <strong>$${data.last}</strong><br><br>`;
+                            botResponse += `📈 24h volume: ${data.volume.BTC} ${symbol.split('USD')[0]} `;
+                            botResponse += `(<strong>$${data.volume.USD}</strong>)<br><br>`;
+
+                            // Add personalized advice based on user interest
+                            if (userInterest === 'trading') {
+                                const spread = data.ask - data.bid;
+                                if (spread > (data.last * 0.01)) {
+                                    botResponse += `⚠️ Notice: The spread is relatively wide ($${spread.toFixed(2)}). `;
+                                    botResponse += `This might mean higher trading costs right now.<br><br>`;
+                                } else {
+                                    botResponse += `✅ The spread looks normal, which is good for trading.<br><br>`;
+                                }
+                            } else if (userInterest === 'investing') {
+                                botResponse += `💡 For investing, consider looking at longer-term charts `;
+                                botResponse += `and fundamentals beyond just this price data.<br><br>`;
+                            }
+
+                            botResponse += ` <p><strong>ADVICE :</strong></p><br>If you're looking to buy, consider the ask price of $${data.ask}, but make sure to research market trends.
+                        If you're looking to sell, the bid price of $${data.bid} might be a good starting point.`;
+
+                            addMessage(botResponse, 'bot');
+                            updateSuggestions(["Check another coin", "Explain terms", "Main menu"]);
+                        } catch (error) {
+                            console.error(error);
+                            //addMessage(`Oops, ${userName}! I'm having trouble connecting to the market data. Please try again in a little while.`, 'bot');
+                        }
+                        break;
+                }
+            }
+
+            // Update suggestion chips
+            function updateSuggestions(suggestions) {
+                suggestionsContainer.innerHTML = '';
+                suggestions.forEach(text => {
+                    const chip = document.createElement('div');
+                    chip.className = 'suggestion-chip';
+                    chip.setAttribute('data-message', text);
+                    chip.textContent = text;
+                    chip.addEventListener('click', function () {
+                        promptInput.value = this.getAttribute('data-message');
+                        sendMessage();
+                    });
+                    suggestionsContainer.appendChild(chip);
+                });
+            }
+
+            // Convert common crypto names to symbols
+            function convertCryptoNameToSymbol(name) {
+                const map = {
+                    'bitcoin': 'BTCUSD',
+                    'btc': 'BTCUSD',
+                    'ether': 'ETHUSD',
+                    'eth': 'ETHUSD',
+                    'ripple': 'XRPUSD',
+                    'xrp': 'XRPUSD',
+                    'cardano': 'ADAUSD',
+                    'ada': 'ADAUSD',
+                    'solana': 'SOLUSD',
+                    'sol': 'SOLUSD'
+                };
+                return map[name.toLowerCase()] || null;
+            }
+
+            // Helper function to get current time
+            function getCurrentTime() {
+                const now = new Date();
+                return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            }
+
+            // Random welcome messages
+            const welcomeMessages = [
+                "Hi there! 👋 I'm your crypto assistant. How are you today?",
+                "Hello! 😊 Ready to explore the crypto world together? How's your day going?",
+                "Hey there! 🌟 I'm CryptoBot. How are you feeling today?"
+            ];
+
+            // Set random welcome message
+            document.getElementById('initialMessage').textContent =
+                welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
         });
     </script>
 </body>
