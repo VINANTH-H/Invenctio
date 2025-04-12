@@ -31,71 +31,92 @@
   - *Purpose*: Fetches cryptocurrency market data such as bid price, ask price, last trade price, and 24-hour volume.
 
 ---
+### 1. 🪙 Crypto Conversation Bot
 
-## 1. Crypto Conversation Bot
-Purpose: Assists users in understanding cryptocurrency markets, tracking prices, and learning trading concepts.
-Features:
-Provides real-time cryptocurrency data (e.g., bid, ask, last trade price, 24-hour volume).
-Explains crypto trading terms like "bid," "ask," "spread," and "liquidity."
-Offers personalized advice based on user preferences (trading, investing, or learning).
-Suggests popular cryptocurrencies (e.g., BTCUSD, ETHUSD, SOLUSD).
-Prominence:
-Educates users about crypto markets, making it ideal for beginners.
-Helps traders and investors make informed decisions by analyzing market trends.
-How It Works:
-Users interact with the bot via a chat interface.
-The bot processes user queries, fetches data from the backend API (e.g., Gemini API), and provides insights.
-It adapts responses based on user preferences and conversation flow.
+**Purpose**  
+Assists users in understanding cryptocurrency markets, tracking prices, and learning trading concepts.
 
+**Features**
+- Provides real-time cryptocurrency data (bid, ask, last trade price, 24-hour volume)
+- Explains crypto trading terms: `bid`, `ask`, `spread`, and `liquidity`
+- Offers personalized advice based on user preferences (trading, investing, learning)
+- Suggests popular cryptocurrencies (e.g., BTCUSD, ETHUSD, SOLUSD)
 
-![alt text](image-3.png)
+**Prominence**
+- Ideal for beginners entering the crypto space
+- Helps traders and investors make informed decisions
 
-## 2. Financial Purchase Advisor
-Purpose: Helps users evaluate whether a purchase aligns with their budget.
-Features:
-Analyzes user income and purchase cost to determine affordability.
-Provides recommendations on whether to proceed with the purchase.
-Calculates monthly payment estimates for installment plans.
-Prominence:
-Encourages responsible spending habits.
-Assists users in avoiding unnecessary debt by analyzing affordability.
-How It Works:
-Users input their income, the item they want to purchase, and its cost.
-The bot calculates affordability based on a percentage of the user's income and provides actionable advice.
+**How It Works**
+- Users interact with the bot via a chat interface
+- Bot fetches data from the Gemini API and responds with insights
+- Tailors answers based on user preferences and conversation flow
 
-![alt text](image-4.png)
+![Crypto Conversation Bot](image-3.png)
 
-## 3. Investment Comparator
-Purpose: Compares different investment options to help users maximize returns.
-Features:
-Allows users to input investment amount, duration, and select two options to compare.
-Calculates projected returns based on historical averages.
-Highlights the best option based on returns and risk levels.
-Prominence:
-Simplifies investment decision-making for users unfamiliar with financial markets.
-Encourages informed investment choices by providing clear comparisons.
-How It Works:
-Users provide investment details.
-The bot calculates future values using predefined return rates and risk factors.
-Results are displayed with a detailed breakdown of each option.
+---
 
-![alt text](image-1.png)
+### 2. 🛍️ Financial Purchase Advisor
 
-## 4. Debt Manager Bot
-Purpose: Helps users create and manage debt repayment plans.
-Features:
-Collects details about user debts (e.g., balance, interest rate, minimum payment).
-Suggests repayment strategies like the "Snowball Method."
-Provides monthly payment schedules and tracks progress.
-Prominence:
-Empowers users to become debt-free faster by optimizing repayment strategies.
-Reduces financial stress by providing clear, actionable plans.
-How It Works:
-Users input details for each debt.
-The bot calculates repayment schedules and prioritizes debts based on the chosen strategy.
-Progress is tracked, and users receive updates on remaining balances.
+**Purpose**  
+Helps users evaluate whether a purchase aligns with their budget.
 
-![alt text](image.png)
+**Features**
+- Analyzes income and purchase cost to assess affordability
+- Offers advice on whether to proceed with the purchase
+- Calculates estimated monthly payments for installment options
 
+**Prominence**
+- Promotes responsible spending
+- Aids users in avoiding unnecessary debt
 
+**How It Works**
+- Users input income, item details, and cost
+- Bot calculates affordability and offers actionable suggestions
 
+![Financial Purchase Advisor](image-4.png)
+
+---
+
+### 3. 📊 Investment Comparator Advisor
+
+**Purpose**  
+Compares different investment options to help users maximize returns.
+
+**Features**
+- Accepts investment amount, duration, and options to compare
+- Projects returns based on historical average performance
+- Highlights best option considering returns and risk
+
+**Prominence**
+- Simplifies investment decisions for beginners
+- Promotes informed financial choices
+
+**How It Works**
+- User provides investment details
+- Bot computes future values using predefined return rates and risk factors
+- Results include a detailed breakdown of each option
+
+![Investment Comparator](image-1.png)
+
+---
+
+### 4. 💳 Debt Manager Bot
+
+**Purpose**  
+Helps users create and manage a debt repayment plan.
+
+**Features**
+- Collects debt details: balance, interest rate, and minimum payment
+- Recommends repayment strategies (e.g., Snowball Method)
+- Provides repayment schedule and progress tracking
+
+**Prominence**
+- Empowers users to become debt-free faster
+- Reduces stress with clear, manageable strategies
+
+**How It Works**
+- Users input details for each debt
+- Bot calculates and prioritizes repayment based on chosen method
+- Progress is tracked with regular updates on balances
+
+![Debt Manager Bot](image.png)
