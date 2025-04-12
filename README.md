@@ -31,7 +31,7 @@
   - *Purpose*: Fetches cryptocurrency market data such as bid price, ask price, last trade price, and 24-hour volume.
 
 ---
-### 1. 🪙 Crypto Conversation Bot
+## 1. Crypto Conversation Bot
 
 **Purpose**  
 Assists users in understanding cryptocurrency markets, tracking prices, and learning trading concepts.
@@ -55,7 +55,7 @@ Assists users in understanding cryptocurrency markets, tracking prices, and lear
 
 ---
 
-### 2. 🛍️ Financial Purchase Advisor
+## 2. Financial Purchase Advisor
 
 **Purpose**  
 Helps users evaluate whether a purchase aligns with their budget.
@@ -77,7 +77,7 @@ Helps users evaluate whether a purchase aligns with their budget.
 
 ---
 
-### 3. 📊 Investment Comparator Advisor
+## 3. Investment Comparator Advisor
 
 **Purpose**  
 Compares different investment options to help users maximize returns.
@@ -100,7 +100,7 @@ Compares different investment options to help users maximize returns.
 
 ---
 
-### 4. 💳 Debt Manager Bot
+## 4. Debt Manager Bot
 
 **Purpose**  
 Helps users create and manage a debt repayment plan.
