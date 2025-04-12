@@ -124,3 +124,54 @@ Helps users create and manage a debt repayment plan.
 - Progress is tracked with regular updates on balances
 
 ![Debt Manager Bot](image.png)
+
+---
+
+## Finance Professionals Section
+
+**Purpose**  
+To inspire users by presenting real-world professionals who specialize in different areas of finance.
+
+**Features**
+- Each profile includes:
+  - A brief description of their expertise.
+  - A professional photo.
+  - A link to their LinkedIn profile for further connection.
+
+**Prominence**
+- Builds credibility by highlighting diverse financial expertise.
+- Encourages users to trust the platform's guidance.
+
+**How It Works**
+- Users view professional profiles.
+- Expertise help
+- Each profile links to LinkedIn for further exploration.
+
+![Financial Expertise](image-6.png)
+
+---
+
+## Financial Tip Feature
+
+**Purpose**  
+- To educate users on financial topics like saving, investing, and debt management.
+- To offer quick, practical tips that users can implement in their daily lives.
+
+**Features**
+- *Categories*: Tips are divided into categories such as:
+  - Saving Tips
+  - Investing Tips
+  - Debt Management Tips
+  - Mixed Tips
+- *Dynamic Display*: Tips are shuffled and displayed one at a time.
+- *Typewriter Animation*: Tips are shown with a typewriter effect for an engaging user experience.
+- *Auto-Rotation*: Tips change automatically every 10 seconds.
+
+**Prominence**
+- Provides users with actionable advice on saving, investing, and debt management, enhancing financial literacy.
+- Offers quick, easy-to-implement tips that users can apply in their daily financial decisions.
+- Covers diverse financial topics, making it relevant for users at different stages of their financial journey.
+
+![alt text](image-7.png)
+
+---
