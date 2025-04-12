@@ -31,6 +31,10 @@
   - *Purpose*: Fetches cryptocurrency market data such as bid price, ask price, last trade price, and 24-hour volume.
 
 ---
+
+![Landing page](image-5.png)
+
+---
 ## 1. Crypto Conversation Bot
 
 **Purpose**  
