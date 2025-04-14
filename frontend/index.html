@@ -2,6 +2,7 @@ index.html :
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,9 +38,11 @@ index.html :
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: var(--darker);
         }
+
         ::-webkit-scrollbar-thumb {
             background: var(--primary);
             border-radius: 4px;
@@ -47,19 +50,41 @@ index.html :
 
         /* Animations */
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
         @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         /* Header */
@@ -200,6 +225,7 @@ index.html :
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -614,7 +640,7 @@ index.html :
             .hero h1 {
                 font-size: 3rem;
             }
-            
+
             .hero-image {
                 width: 40%;
             }
@@ -627,27 +653,27 @@ index.html :
                 padding-top: 8rem;
                 padding-bottom: 4rem;
             }
-            
+
             .hero-content {
                 max-width: 100%;
                 margin-bottom: 3rem;
             }
-            
+
             .hero-buttons {
                 justify-content: center;
             }
-            
+
             .hero-image {
                 position: relative;
                 right: auto;
                 width: 80%;
                 margin: 0 auto;
             }
-            
+
             .nav-links {
                 display: none;
             }
-            
+
             .mobile-menu-btn {
                 display: block;
             }
@@ -657,19 +683,19 @@ index.html :
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
+
             .section-title h2 {
                 font-size: 2rem;
             }
-            
+
             .features-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .dashboard-image {
                 margin-top: 2rem;
             }
-            
+
             .footer-grid {
                 grid-template-columns: 1fr;
             }
@@ -679,21 +705,22 @@ index.html :
             .hero h1 {
                 font-size: 2rem;
             }
-            
+
             .hero-buttons {
                 flex-direction: column;
                 gap: 1rem;
             }
-            
-            .cta-button, .secondary-button {
+
+            .cta-button,
+            .secondary-button {
                 width: 100%;
                 text-align: center;
             }
-            
+
             .newsletter-form {
                 flex-direction: column;
             }
-            
+
             .newsletter-form button {
                 padding: 0.8rem;
             }
@@ -724,49 +751,57 @@ index.html :
         }
     </style>
 
-<style>
-    .tip-card {
-  position: fixed;
-  bottom: 15px;
-  right: 20px;
-  width: 500px;
-  height: 200px;
-  max-width: 90%;
-  background-color: #3c3c3c;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  padding: 14px;
-  font-family: 'Segoe UI', sans-serif;
-  z-index: 9999;
-  animation: fadeIn 1s ease-in-out;
-}
+    <style>
+        .tip-card {
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            width: 500px;
+            height: 200px;
+            max-width: 90%;
+            background-color: #3c3c3c;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 14px;
+            font-family: 'Segoe UI', sans-serif;
+            z-index: 9999;
+            animation: fadeIn 1s ease-in-out;
+        }
 
-#tip-title {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #00d9e8; /* bluish */
-  margin-bottom: 8px;
-  margin-top: 10px;
-}
+        #tip-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #00d9e8;
+            /* bluish */
+            margin-bottom: 8px;
+            margin-top: 10px;
+        }
 
 
-#tip-content {
-  font-size: 0.95rem;
-  color: #e1e0e0;
-  line-height: 1.4;
-  white-space: pre-wrap;
-  min-height: 100px;
-}
+        #tip-content {
+            font-size: 0.95rem;
+            color: #e1e0e0;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            min-height: 100px;
+        }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
 
-  </style>
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 
 
 </head>
+
 <body>
     <!-- Header -->
     <header id="header">
@@ -774,16 +809,16 @@ index.html :
             <i class="fas fa-robot"></i>
             <span>FinAI</span>
         </a>
-        
+
         <nav class="nav-links">
             <a href="#features">Features</a>
             <a href="#dashboard">Dashboard</a>
             <a href="#testimonials">Contact Experts</a>
             <!-- <a href="#contact">Contact</a> -->
         </nav>
-        
+
         <a href="#dashboard" class="cta-button">Try Dashboard</a>
-        
+
         <button class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
         </button>
@@ -793,21 +828,23 @@ index.html :
     <div id="tip-container" class="tip-card">
         <h3 id="tip-title"></h3>
         <p id="tip-content"></p>
-      </div>
+    </div>
 
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Your Personal Conversational Financial Advisor</h1>
-            <p>FinAI provides personalized financial guidance and education for users with limited financial literacy, helping you make better decisions about saving, investing, and debt management through simple, friendly conversations.</p>
-            
+            <p>FinAI provides personalized financial guidance and education for users with limited financial literacy,
+                helping you make better decisions about saving, investing, and debt management through simple, friendly
+                conversations.</p>
+
             <div class="hero-buttons">
                 <a href="#dashboard" class="cta-button">Explore Dashboard</a>
                 <a href="#features" class="secondary-button">Learn More</a>
             </div>
         </div>
-        
+
         <div class="hero-image">
             <img src="./front.png" alt="FinAI Interface">
         </div>
@@ -817,9 +854,10 @@ index.html :
     <section class="features" id="features">
         <div class="section-title animate-on-scroll">
             <h2>Smart Financial Guidance</h2>
-            <p>FinAI combines artificial intelligence with financial expertise to provide you with personalized recommendations</p>
+            <p>FinAI combines artificial intelligence with financial expertise to provide you with personalized
+                recommendations</p>
         </div>
-        
+
         <div class="features-grid">
             <div class="feature-card animate-on-scroll delay-1">
                 <div class="feature-icon">
@@ -828,7 +866,7 @@ index.html :
                 <h3>Purchase Analyzer</h3>
                 <p>Determine if a purchase fits within your budget with detailed financial analysis.</p>
             </div>
-            
+
             <div class="feature-card animate-on-scroll delay-2">
                 <div class="feature-icon">
                     <i class="fas fa-balance-scale"></i>
@@ -836,7 +874,7 @@ index.html :
                 <h3>Investment Comparator</h3>
                 <p>Compare different investment strategies to find the best option for your goals.</p>
             </div>
-            
+
             <div class="feature-card animate-on-scroll delay-3">
                 <div class="feature-icon">
                     <i class="fas fa-credit-card"></i>
@@ -844,7 +882,7 @@ index.html :
                 <h3>Debt Manager</h3>
                 <p>Create and manage personalized debt payoff plans to become debt-free faster.</p>
             </div>
-        
+
             <div class="feature-card animate-on-scroll delay-4">
                 <div class="feature-icon">
                     <i class="fas fa-chart-pie"></i>
@@ -861,11 +899,11 @@ index.html :
             <h2>Financial Tools Dashboard</h2>
             <p>Access powerful financial management tools with our intuitive dashboard</p>
         </div>
-        
+
         <div class="dashboard-image animate-on-scroll delay-1">
             <img src="./dash.jpg" alt="FinAI Dashboard">
         </div>
-        
+
         <div class="dashboard-cta animate-on-scroll delay-2">
             <a href="tools-dashboard.html" class="cta-button">Go to Financial Dashboard</a>
         </div>
@@ -886,7 +924,8 @@ index.html :
                     <strong>Handles:</strong> Bookkeeping, audits, tax preparation
                 </div>
                 <div class="testimonial-author">
-                    <img src="Nova G.jpg" alt="Nova G" class="author-avatar">
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQHD7YfmYD1UkA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1672486054331?e=1750291200&v=beta&t=gRml52Y6qmeRlpszNteG0lzoT1yn9xoHhDcIKh2rJqY"
+                        alt="Nova G" class="author-avatar">
                     <div class="author-info">
                         <h4>Nova G</h4>
                         <p>Accounting Specialist</p>
@@ -900,7 +939,8 @@ index.html :
                     <strong>Handles:</strong> Payment systems, blockchain, digital banking
                 </div>
                 <div class="testimonial-author">
-                    <img src="Prasanna Lohar.jpg" alt="Prasanna Lohar" class="author-avatar">
+                    <img src="https://media.licdn.com/dms/image/v2/C4E03AQGukx617hWLjQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516362517042?e=1750291200&v=beta&t=3_FoZ_VKp0t9fyRNHn9zRtESPA_-gZN0H2VKpjWQXc8"
+                        alt="Prasanna Lohar" class="author-avatar">
                     <div class="author-info">
                         <h4>Prasanna Lohar</h4>
                         <p>Fintech Advisor</p>
@@ -914,7 +954,8 @@ index.html :
                     <strong>Handles:</strong> Portfolio management, tax planning, retirement strategies
                 </div>
                 <div class="testimonial-author">
-                    <img src="chetananand.jpg" alt="Chetan Anand" class="author-avatar">
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQE6z7n-zKrc2A/profile-displayphoto-shrink_400_400/B56ZUW20t7GQAg-/0/1739845227138?e=1750291200&v=beta&t=Z1yg671dxC-Jq5ub-QGuKJsgumnW_AEUZ3MaB2CIgvk"
+                        alt="Chetan Anand" class="author-avatar">
                     <div class="author-info">
                         <h4>Chetan Anand</h4>
                         <p>Wealth Manager</p>
@@ -941,7 +982,8 @@ index.html :
                     <i class="fas fa-robot"></i>
                     <span>FinAI</span>
                 </a>
-                <p>Making financial literacy accessible to everyone through conversational AI and personalized guidance.</p>
+                <p>Making financial literacy accessible to everyone through conversational AI and personalized guidance.
+                </p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -949,7 +991,7 @@ index.html :
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            
+
             <div class="footer-links">
                 <h3>Quick Links</h3>
                 <ul>
@@ -959,7 +1001,7 @@ index.html :
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
-            
+
             <div class="footer-links">
                 <h3>Resources</h3>
                 <ul>
@@ -969,7 +1011,7 @@ index.html :
                     <li><a href="#">Support</a></li>
                 </ul>
             </div>
-            
+
             <div class="footer-newsletter">
                 <h3>Newsletter</h3>
                 <p>Subscribe to get financial tips and updates from FinAI.</p>
@@ -979,17 +1021,18 @@ index.html :
                 </form>
             </div>
         </div>
-        
+
         <div class="footer-bottom">
-            <p>&copy; 2023 FinAI. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p>&copy; 2023 FinAI. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of
+                    Service</a></p>
         </div>
     </footer>
 
     <script>
         // Scroll animations
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const animateElements = document.querySelectorAll('.animate-on-scroll');
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -999,46 +1042,46 @@ index.html :
             }, {
                 threshold: 0.1
             });
-            
+
             animateElements.forEach(element => {
                 observer.observe(element);
             });
-            
+
             // Header scroll effect
             const header = document.getElementById('header');
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 if (window.scrollY > 50) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
                 }
             });
-            
+
             // Mobile menu toggle
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
-            
-            mobileMenuBtn.addEventListener('click', function() {
+
+            mobileMenuBtn.addEventListener('click', function () {
                 navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
             });
-            
+
             // Close mobile menu when clicking a link
             document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function () {
                     if (window.innerWidth <= 992) {
                         navLinks.style.display = 'none';
                     }
                 });
             });
-            
+
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
+                anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    
+
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
-                    
+
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
@@ -1051,231 +1094,232 @@ index.html :
         });
     </script>
 
-<script>
-    const tips = [
-  // SAVING TIPS
-  {
-    title: "Start an Emergency Fund",
-    content: "Build a safety net of 3-6 months of essential living expenses (rent, utilities, groceries, transport, minimum debt payments). This protects against unexpected costs like medical bills or job loss, preventing new debt. Start small and aim for your target in a separate, accessible savings account.",
-    type: "Saving Tip"
-  },
-  {
-    title: "Pay Yourself First",
-    content: "Before spending, allocate a portion of your income to savings, treating it like a bill. Automate transfers to your savings on payday. Consistent saving, even a small percentage, grows over time and prioritizes your financial future.",
-    type: "Saving Tip"
-  },
-  {
-    title: "Track Every Expense",
-    content: "Record where your money goes daily or weekly (notebook, app, spreadsheet). Understanding spending habits helps identify areas to cut back and save more. Categorize expenses and review patterns to make informed budgeting decisions.",
-    type: "Saving Tip"
-  },
-  {
-    title: "Avoid Lifestyle Inflation",
-    content: "Resist increasing spending significantly as your income grows. Lifestyle creep hinders saving. Focus on maintaining your current living standard and direct extra income to savings and financial goals.",
-    type: "Saving Tip"
-  },
-  {
-    title: "Create a Realistic Budget",
-    content: "Develop a monthly budget outlining income and allocating funds to savings, bills, food, transport, and discretionary spending. Be honest about spending and adjust as needed. Regularly review and refine your budget to align with goals and changes.",
-    type: "Saving Tip"
-  },
-  {
-    title: "Use Cash for Discretionary Spending",
-    content: "Withdraw a fixed amount weekly/monthly for non-essentials (entertainment, dining, hobbies). Once it's gone, no more spending in that category until the next period. This increases awareness and prevents overspending compared to cards.",
-    type: "Saving Tip"
-  },
-  {
-    title: "Use the 50/30/20 Rule",
-    content: "Allocate after-tax income: 50% needs (essentials), 30% wants (non-essentials), and 20% savings/debt repayment. This simple framework helps manage money and prioritize your financial future. Adjust percentages to your situation.",
-    type: "Saving Tip"
-  },
-  {
-    title: "Set SMART Financial Goals",
-    content: "Make goals Specific, Measurable, Achievable, Relevant, and Time-bound. Instead of 'save more,' try 'save ₹5,000/month for a car down payment by year-end.' Clear goals provide motivation and direction.",
-    type: "Saving Tip"
-  },
-  {
-    title: "Automate Your Savings",
-    content: "Set up regular automatic transfers from checking to savings on payday. This ensures consistent saving without manual effort, reducing the temptation to spend. Adjust amounts/frequency as your finances change.",
-    type: "Saving Tip"
-  },
-  {
-    title: "Use a Separate Account for Savings",
-    content: "Keep savings in a less accessible account than your everyday spending one. This physical/mental separation reduces the urge to use savings for non-essentials. Consider a high-yield account for better returns. The transfer inconvenience can deter impulsive withdrawals.",
-    type: "Saving Tip"
-  },
+    <script>
+        const tips = [
+            // SAVING TIPS
+            {
+                title: "Start an Emergency Fund",
+                content: "Build a safety net of 3-6 months of essential living expenses (rent, utilities, groceries, transport, minimum debt payments). This protects against unexpected costs like medical bills or job loss, preventing new debt. Start small and aim for your target in a separate, accessible savings account.",
+                type: "Saving Tip"
+            },
+            {
+                title: "Pay Yourself First",
+                content: "Before spending, allocate a portion of your income to savings, treating it like a bill. Automate transfers to your savings on payday. Consistent saving, even a small percentage, grows over time and prioritizes your financial future.",
+                type: "Saving Tip"
+            },
+            {
+                title: "Track Every Expense",
+                content: "Record where your money goes daily or weekly (notebook, app, spreadsheet). Understanding spending habits helps identify areas to cut back and save more. Categorize expenses and review patterns to make informed budgeting decisions.",
+                type: "Saving Tip"
+            },
+            {
+                title: "Avoid Lifestyle Inflation",
+                content: "Resist increasing spending significantly as your income grows. Lifestyle creep hinders saving. Focus on maintaining your current living standard and direct extra income to savings and financial goals.",
+                type: "Saving Tip"
+            },
+            {
+                title: "Create a Realistic Budget",
+                content: "Develop a monthly budget outlining income and allocating funds to savings, bills, food, transport, and discretionary spending. Be honest about spending and adjust as needed. Regularly review and refine your budget to align with goals and changes.",
+                type: "Saving Tip"
+            },
+            {
+                title: "Use Cash for Discretionary Spending",
+                content: "Withdraw a fixed amount weekly/monthly for non-essentials (entertainment, dining, hobbies). Once it's gone, no more spending in that category until the next period. This increases awareness and prevents overspending compared to cards.",
+                type: "Saving Tip"
+            },
+            {
+                title: "Use the 50/30/20 Rule",
+                content: "Allocate after-tax income: 50% needs (essentials), 30% wants (non-essentials), and 20% savings/debt repayment. This simple framework helps manage money and prioritize your financial future. Adjust percentages to your situation.",
+                type: "Saving Tip"
+            },
+            {
+                title: "Set SMART Financial Goals",
+                content: "Make goals Specific, Measurable, Achievable, Relevant, and Time-bound. Instead of 'save more,' try 'save ₹5,000/month for a car down payment by year-end.' Clear goals provide motivation and direction.",
+                type: "Saving Tip"
+            },
+            {
+                title: "Automate Your Savings",
+                content: "Set up regular automatic transfers from checking to savings on payday. This ensures consistent saving without manual effort, reducing the temptation to spend. Adjust amounts/frequency as your finances change.",
+                type: "Saving Tip"
+            },
+            {
+                title: "Use a Separate Account for Savings",
+                content: "Keep savings in a less accessible account than your everyday spending one. This physical/mental separation reduces the urge to use savings for non-essentials. Consider a high-yield account for better returns. The transfer inconvenience can deter impulsive withdrawals.",
+                type: "Saving Tip"
+            },
 
-  // INVESTING TIPS
-  {
-    title: "Start Investing Early",
-    content: "Begin investing as soon as possible to maximize compounding – earnings on earnings. Even small, consistent investments early on can grow significantly over the long term. Don't wait for a large sum; start now with what you can afford.",
-    type: "Investing Tip"
-  },
-  {
-    title: "Understand Compound Interest",
-    content: "Compound interest earns returns on your initial investment (principal) and accumulated interest. The longer your money is invested and the more frequently it compounds, the greater the exponential growth. This highlights the benefit of early and consistent investing.",
-    type: "Investing Tip"
-  },
-  {
-    title: "Diversify Your Investments",
-    content: "Spread your investments across different asset classes (stocks, bonds, real estate), sectors, and regions. Diversification reduces risk; if one investment underperforms, others can offset losses, leading to more stable long-term returns.",
-    type: "Investing Tip"
-  },
-  {
-    title: "Invest Consistently",
-    content: "Invest a fixed amount regularly (monthly/quarterly) regardless of market fluctuations. Dollar-cost averaging buys more when prices are low and less when high, potentially lowering your average cost per share over time. It removes emotion from investing and focuses on long-term goals.",
-    type: "Investing Tip"
-  },
-  {
-    title: "Avoid Timing the Market",
-    content: "Predicting market highs and lows is very difficult. Trying to time the market often leads to missed gains and potentially lower returns. Focus on a long-term strategy and invest consistently. Time in the market is generally more crucial than timing it.",
-    type: "Investing Tip"
-  },
-  {
-    title: "Understand Your Risk Tolerance",
-    content: "Assess your comfort level with potential investment losses based on age, financial situation, goals, and time horizon. Younger investors with longer horizons might tolerate more risk for higher potential returns, while those near retirement may prefer lower-risk options to preserve capital. Align investments with your risk tolerance.",
-    type: "Investing Tip"
-  },
-  {
-    title: "Use Low-Cost Index Funds",
-    content: "Index funds (ETFs or mutual funds) track market indexes (e.g., S&P 500) and have very low fees (expense ratios) as they aim to match market performance, not outperform it. Lower costs significantly improve long-term returns as more of your money stays invested.",
-    type: "Investing Tip"
-  },
-  {
-    title: "Reinvest Dividends",
-    content: "If your investments pay dividends, choose to reinvest them to buy more shares. This creates a compounding effect, generating further dividends and accelerating portfolio growth over time.",
-    type: "Investing Tip"
-  },
-  {
-    title: "Invest in What You Understand",
-    content: "Focus on investing in companies, industries, and financial products you understand. Avoid complex or obscure investments where risks are hard to assess. Familiarity allows for more informed decisions and greater confidence in your strategy.",
-    type: "Investing Tip"
-  },
-  {
-    title: "Review Your Portfolio Annually",
-    content: "Annually assess your portfolio's performance, asset allocation, and alignment with your goals and risk tolerance. Rebalance if needed to maintain your desired asset mix after market changes. This ensures your portfolio stays on track.",
-    type: "Investing Tip"
-  },
+            // INVESTING TIPS
+            {
+                title: "Start Investing Early",
+                content: "Begin investing as soon as possible to maximize compounding – earnings on earnings. Even small, consistent investments early on can grow significantly over the long term. Don't wait for a large sum; start now with what you can afford.",
+                type: "Investing Tip"
+            },
+            {
+                title: "Understand Compound Interest",
+                content: "Compound interest earns returns on your initial investment (principal) and accumulated interest. The longer your money is invested and the more frequently it compounds, the greater the exponential growth. This highlights the benefit of early and consistent investing.",
+                type: "Investing Tip"
+            },
+            {
+                title: "Diversify Your Investments",
+                content: "Spread your investments across different asset classes (stocks, bonds, real estate), sectors, and regions. Diversification reduces risk; if one investment underperforms, others can offset losses, leading to more stable long-term returns.",
+                type: "Investing Tip"
+            },
+            {
+                title: "Invest Consistently",
+                content: "Invest a fixed amount regularly (monthly/quarterly) regardless of market fluctuations. Dollar-cost averaging buys more when prices are low and less when high, potentially lowering your average cost per share over time. It removes emotion from investing and focuses on long-term goals.",
+                type: "Investing Tip"
+            },
+            {
+                title: "Avoid Timing the Market",
+                content: "Predicting market highs and lows is very difficult. Trying to time the market often leads to missed gains and potentially lower returns. Focus on a long-term strategy and invest consistently. Time in the market is generally more crucial than timing it.",
+                type: "Investing Tip"
+            },
+            {
+                title: "Understand Your Risk Tolerance",
+                content: "Assess your comfort level with potential investment losses based on age, financial situation, goals, and time horizon. Younger investors with longer horizons might tolerate more risk for higher potential returns, while those near retirement may prefer lower-risk options to preserve capital. Align investments with your risk tolerance.",
+                type: "Investing Tip"
+            },
+            {
+                title: "Use Low-Cost Index Funds",
+                content: "Index funds (ETFs or mutual funds) track market indexes (e.g., S&P 500) and have very low fees (expense ratios) as they aim to match market performance, not outperform it. Lower costs significantly improve long-term returns as more of your money stays invested.",
+                type: "Investing Tip"
+            },
+            {
+                title: "Reinvest Dividends",
+                content: "If your investments pay dividends, choose to reinvest them to buy more shares. This creates a compounding effect, generating further dividends and accelerating portfolio growth over time.",
+                type: "Investing Tip"
+            },
+            {
+                title: "Invest in What You Understand",
+                content: "Focus on investing in companies, industries, and financial products you understand. Avoid complex or obscure investments where risks are hard to assess. Familiarity allows for more informed decisions and greater confidence in your strategy.",
+                type: "Investing Tip"
+            },
+            {
+                title: "Review Your Portfolio Annually",
+                content: "Annually assess your portfolio's performance, asset allocation, and alignment with your goals and risk tolerance. Rebalance if needed to maintain your desired asset mix after market changes. This ensures your portfolio stays on track.",
+                type: "Investing Tip"
+            },
 
-  // DEBT MANAGEMENT TIPS
-  {
-    title: "Limit Credit Card Usage",
-    content: "Use credit cards for planned, necessary purchases and pay the full balance by the due date to avoid interest. Treat them as payment tools, not extra income. Monitor statements regularly.",
-    type: "Debt Management Tip"
-  },
-  {
-    title: "Know Your Interest Rates",
-    content: "List all debts with their interest rates. Prioritize paying off high-interest debts first to minimize total interest paid over the loan's life.",
-    type: "Debt Management Tip"
-  },
-  {
-    title: "Avoid Minimum Payments",
-    content: "Paying only the minimum on credit cards/loans keeps you in debt longer and increases interest paid. Pay more than the minimum whenever possible to reduce the principal faster and save on interest.",
-    type: "Debt Management Tip"
-  },
-  {
-    title: "Use the Snowball Method",
-    content: "List debts smallest to largest balance. Make minimum payments on all but the smallest, where you put extra funds. Once the smallest is paid, add that payment to the next smallest. This provides quick wins for motivation.",
-    type: "Debt Management Tip"
-  },
-  {
-    title: "Negotiate Lower Interest Rates",
-    content: "Contact credit card issuers/loan providers to ask for lower interest rates, especially with a good credit history. Even a small reduction can save significant money over time.",
-    type: "Debt Management Tip"
-  },
-  {
-    title: "Avoid Taking on New Debt",
-    content: "While paying off debt, avoid new borrowing unless absolutely necessary for valuable assets. Carefully consider if new purchases are needs or wants and if you can afford repayments without hindering current debt efforts.",
-    type: "Debt Management Tip"
-  },
-  {
-    title: "Don’t Cosign Loans",
-    content: "Be very cautious about cosigning, even for loved ones. You become legally responsible if they default, risking your finances and credit score. Only cosign if fully prepared to repay the loan yourself.",
-    type: "Debt Management Tip"
-  },
-  {
-    title: "Build Credit the Right Way",
-    content: "If you have little/no credit, build it responsibly with a secured card or small credit-builder loan. Use it for small, necessary purchases and always pay in full and on time to establish a positive credit history.",
-    type: "Debt Management Tip"
-  },
-  {
-    title: "Use Windfalls Wisely",
-    content: "Apply unexpected money (tax refunds, bonuses, gifts) to pay down debt, especially high-interest debt. This accelerates repayment and reduces total interest paid.",
-    type: "Debt Management Tip"
-  },
-  {
-    title: "Check Your Credit Report",
-    content: "Review your credit report annually from all major bureaus to identify and correct errors that could negatively impact your score. A good credit score helps with better interest rates on future loans/credit.",
-    type: "Debt Management Tip"
-  },
+            // DEBT MANAGEMENT TIPS
+            {
+                title: "Limit Credit Card Usage",
+                content: "Use credit cards for planned, necessary purchases and pay the full balance by the due date to avoid interest. Treat them as payment tools, not extra income. Monitor statements regularly.",
+                type: "Debt Management Tip"
+            },
+            {
+                title: "Know Your Interest Rates",
+                content: "List all debts with their interest rates. Prioritize paying off high-interest debts first to minimize total interest paid over the loan's life.",
+                type: "Debt Management Tip"
+            },
+            {
+                title: "Avoid Minimum Payments",
+                content: "Paying only the minimum on credit cards/loans keeps you in debt longer and increases interest paid. Pay more than the minimum whenever possible to reduce the principal faster and save on interest.",
+                type: "Debt Management Tip"
+            },
+            {
+                title: "Use the Snowball Method",
+                content: "List debts smallest to largest balance. Make minimum payments on all but the smallest, where you put extra funds. Once the smallest is paid, add that payment to the next smallest. This provides quick wins for motivation.",
+                type: "Debt Management Tip"
+            },
+            {
+                title: "Negotiate Lower Interest Rates",
+                content: "Contact credit card issuers/loan providers to ask for lower interest rates, especially with a good credit history. Even a small reduction can save significant money over time.",
+                type: "Debt Management Tip"
+            },
+            {
+                title: "Avoid Taking on New Debt",
+                content: "While paying off debt, avoid new borrowing unless absolutely necessary for valuable assets. Carefully consider if new purchases are needs or wants and if you can afford repayments without hindering current debt efforts.",
+                type: "Debt Management Tip"
+            },
+            {
+                title: "Don’t Cosign Loans",
+                content: "Be very cautious about cosigning, even for loved ones. You become legally responsible if they default, risking your finances and credit score. Only cosign if fully prepared to repay the loan yourself.",
+                type: "Debt Management Tip"
+            },
+            {
+                title: "Build Credit the Right Way",
+                content: "If you have little/no credit, build it responsibly with a secured card or small credit-builder loan. Use it for small, necessary purchases and always pay in full and on time to establish a positive credit history.",
+                type: "Debt Management Tip"
+            },
+            {
+                title: "Use Windfalls Wisely",
+                content: "Apply unexpected money (tax refunds, bonuses, gifts) to pay down debt, especially high-interest debt. This accelerates repayment and reduces total interest paid.",
+                type: "Debt Management Tip"
+            },
+            {
+                title: "Check Your Credit Report",
+                content: "Review your credit report annually from all major bureaus to identify and correct errors that could negatively impact your score. A good credit score helps with better interest rates on future loans/credit.",
+                type: "Debt Management Tip"
+            },
 
-  // MIXED TIPS
-  {
-    title: "Make Financial Education a Habit",
-    content: "Dedicate short periods daily/weekly (10-15 mins) to learn about personal finance (articles, videos, podcasts, courses) on budgeting, saving, investing, and debt. Continuous learning empowers informed decisions.",
-    type: "Mixed Tip"
-  },
-  {
-    title: "Build Multiple Income Streams",
-    content: "Relying on one income source is risky. Explore side hustles, freelancing, investment income, or skill development for extra earning potential. Diversified income provides security and accelerates financial progress.",
-    type: "Mixed Tip"
-  },
-  {
-    title: "Buy Needs, Delay Wants",
-    content: "Before buying, distinguish between essential 'needs' and discretionary 'wants.' Prioritize needs and consciously delay or reconsider wants to control impulsive spending and save more.",
-    type: "Mixed Tip"
-  },
-  {
-    title: "Plan Big Purchases in Advance",
-    content: "Save for significant non-essential items (gadgets, furniture, vacations) instead of using credit impulsively. Planning and saving avoids debt and allows for research and better deals.",
-    type: "Mixed Tip"
-  }
-];
+            // MIXED TIPS
+            {
+                title: "Make Financial Education a Habit",
+                content: "Dedicate short periods daily/weekly (10-15 mins) to learn about personal finance (articles, videos, podcasts, courses) on budgeting, saving, investing, and debt. Continuous learning empowers informed decisions.",
+                type: "Mixed Tip"
+            },
+            {
+                title: "Build Multiple Income Streams",
+                content: "Relying on one income source is risky. Explore side hustles, freelancing, investment income, or skill development for extra earning potential. Diversified income provides security and accelerates financial progress.",
+                type: "Mixed Tip"
+            },
+            {
+                title: "Buy Needs, Delay Wants",
+                content: "Before buying, distinguish between essential 'needs' and discretionary 'wants.' Prioritize needs and consciously delay or reconsider wants to control impulsive spending and save more.",
+                type: "Mixed Tip"
+            },
+            {
+                title: "Plan Big Purchases in Advance",
+                content: "Save for significant non-essential items (gadgets, furniture, vacations) instead of using credit impulsively. Planning and saving avoids debt and allows for research and better deals.",
+                type: "Mixed Tip"
+            }
+        ];
 
-// Shuffle tips randomly
-function shuffleTips(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
+        // Shuffle tips randomly
+        function shuffleTips(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
 
-let shuffledTips = shuffleTips([...tips]);
-let tipIndex = 0;
+        let shuffledTips = shuffleTips([...tips]);
+        let tipIndex = 0;
 
-function typeWriterEffect(text, element, onComplete) {
-  element.textContent = "";
-  let i = 0;
+        function typeWriterEffect(text, element, onComplete) {
+            element.textContent = "";
+            let i = 0;
 
-  function type() {
-    if (i < text.length) {
-      element.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, 30);
-    } else {
-      if (onComplete) onComplete();
-    }
-  }
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 30);
+                } else {
+                    if (onComplete) onComplete();
+                }
+            }
 
-  type();
-}
+            type();
+        }
 
-function showTip() {
-  const tip = shuffledTips[tipIndex];
-  document.getElementById("tip-title").innerHTML = `${tip.type}<span> :</span><br>${tip.title}`;
-  const contentEl = document.getElementById("tip-content");
+        function showTip() {
+            const tip = shuffledTips[tipIndex];
+            document.getElementById("tip-title").innerHTML = `${tip.type}<span> :</span><br>${tip.title}`;
+            const contentEl = document.getElementById("tip-content");
 
-  typeWriterEffect(tip.content, contentEl, () => {
-    setTimeout(() => {
-      tipIndex = (tipIndex + 1) % shuffledTips.length;
-      showTip();
-    }, 10000);
-  });
-}
+            typeWriterEffect(tip.content, contentEl, () => {
+                setTimeout(() => {
+                    tipIndex = (tipIndex + 1) % shuffledTips.length;
+                    showTip();
+                }, 10000);
+            });
+        }
 
-// Start showing tips
-showTip();
-  </script>
+        // Start showing tips
+        showTip();
+    </script>
 </body>
+
 </html>
