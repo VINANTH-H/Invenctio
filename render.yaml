@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: fintech-backend
+    env: node
+    region: oregon
+    branch: main
+    rootDir: backend
+    buildCommand: yarn install
+    startCommand: node server.js
+
