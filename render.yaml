@@ -5,6 +5,6 @@ services:
     region: oregon
     branch: main
     rootDir: backend
-    buildCommand: yarn install
+    buildCommand: npm install
     startCommand: node server.js
 
