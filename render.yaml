@@ -1,11 +1,13 @@
 services:
   - type: web
-    name: fintech-backend
+    name: fintech
     env: node
-    repo: https://github.com/VINANTH-H/Invenctio
     branch: main
     rootDir: backend
     buildCommand: npm install
-    startCommand: npm start
-    autoDeploy: true
-
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        value: AIzaSyCf5TsuWiYvhnnLmAreipOTZbkGam5mK78
