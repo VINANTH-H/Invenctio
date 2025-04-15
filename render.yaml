@@ -2,9 +2,10 @@ services:
   - type: web
     name: fintech-backend
     env: node
-    region: oregon
+    repo: https://github.com/VINANTH-H/Invenctio
     branch: main
     rootDir: backend
     buildCommand: npm install
-    startCommand: node server.js
+    startCommand: npm start
+    autoDeploy: true
 
