@@ -124,9 +124,34 @@ index.html :
             animation: pulse 2s infinite;
         }
 
+        /* Default styles for nav-links */
         .nav-links {
             display: flex;
             gap: 2rem;
+        }
+
+        /* Hide nav-links by default on smaller screens */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: var(--dark);
+                padding: 1rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+            }
+
+            .nav-links a {
+                margin: 0.5rem 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
         }
 
         .nav-links a {
@@ -1346,7 +1371,14 @@ index.html :
             isDragging = false;
             tipContainer.style.cursor = "grab";
         });
+        // Hide the tip section when the mobile menu is clicked
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 
+        mobileMenuBtn.addEventListener('click', () => {
+            if (window.innerWidth <= 992) { // Check if it's a mobile screen
+                tipContainer.style.display = tipContainer.style.display === 'none' ? 'block' : 'none';
+            }
+        });
     </script>
 </body>
 
